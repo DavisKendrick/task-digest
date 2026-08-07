@@ -13,78 +13,56 @@
     --accent:#1F6F5C; --accent-ink:#14503F; --over:#B23A2E; --amber:#9A6B12;
     --shadow:0 1px 2px rgba(28,42,36,.05), 0 6px 24px rgba(28,42,36,.06);
   }
-  *{box-sizing:border-box}
-  html,body{margin:0}
+  *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.5;}
   .wrap{max-width:860px; margin:0 auto; padding:0 20px 80px;}
-
-  /* top bar */
   header{position:sticky; top:0; z-index:20; background:rgba(245,246,244,.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
   .bar{max-width:860px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; gap:16px; justify-content:space-between;}
   .brand{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:16px; letter-spacing:-.01em;}
   .brand span{color:var(--muted); font-weight:500;}
   .whoami{font-size:12.5px; color:var(--muted); text-align:right;}
   .whoami b{color:var(--ink); font-weight:600;}
-
+  .lanechip{display:inline-block; margin-left:6px; padding:1px 8px; border-radius:999px; font-size:11px; font-weight:600; background:#E7EFEB; color:var(--accent-ink);}
+  .lanechip.social{background:#EAE3F6; color:#5B3E86;}
   button{font-family:inherit; cursor:pointer; border:0; border-radius:9px; font-weight:600; font-size:13.5px; padding:9px 15px; transition:background .15s, opacity .15s, transform .05s;}
-  button:active{transform:translateY(1px)}
-  button:disabled{opacity:.45; cursor:not-allowed}
-  .btn-primary{background:var(--accent); color:#fff;}
-  .btn-primary:hover:not(:disabled){background:var(--accent-ink)}
-  .btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--line);}
-  .btn-ghost:hover:not(:disabled){border-color:var(--muted)}
-
-  /* control strip */
+  button:active{transform:translateY(1px)} button:disabled{opacity:.45; cursor:not-allowed}
+  .btn-primary{background:var(--accent); color:#fff;} .btn-primary:hover:not(:disabled){background:var(--accent-ink)}
+  .btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--line);} .btn-ghost:hover:not(:disabled){border-color:var(--muted)}
+  select{font-family:inherit; font-size:13px; font-weight:600; padding:8px 10px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink);}
   .controls{display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:22px 0 6px;}
-  .count{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:14px;}
-  .count b{font-size:22px;}
+  .count{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:14px;} .count b{font-size:22px;}
   .spacer{flex:1}
   .switch{display:inline-flex; align-items:center; gap:9px; font-size:13px; font-weight:500; user-select:none; cursor:pointer;}
   .switch input{position:absolute; opacity:0; width:0; height:0;}
   .track{width:38px; height:22px; border-radius:999px; background:#CBD3CD; position:relative; transition:background .15s;}
   .track::after{content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.2); transition:transform .15s;}
-  .switch input:checked + .track{background:var(--amber);}
-  .switch input:checked + .track::after{transform:translateX(16px);}
-
+  .switch input:checked + .track{background:var(--amber);} .switch input:checked + .track::after{transform:translateX(16px);}
   .testbanner{margin:14px 0 0; background:#FBF3E2; border:1px solid #EAD9AE; color:#7A5610; border-radius:11px; padding:11px 14px; font-size:13px; font-weight:500;}
   .testbanner.hidden{display:none}
-
-  /* sign-in gate */
   .gate{margin:60px auto; max-width:440px; text-align:center; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:40px 32px; box-shadow:var(--shadow);}
   .gate h1{font-family:"Space Grotesk",sans-serif; font-size:22px; margin:0 0 8px;}
   .gate p{color:var(--muted); font-size:14px; margin:0 0 22px;}
-
-  /* cards */
   .list{display:flex; flex-direction:column; gap:16px; margin-top:16px;}
   .card{display:flex; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); animation:rise .25s ease both;}
   @keyframes rise{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
-  .rail{width:5px; flex:0 0 5px; background:var(--accent);}
-  .rail.over{background:var(--over)} .rail.today{background:var(--amber)}
+  .rail{width:5px; flex:0 0 5px; background:var(--accent);} .rail.over{background:var(--over)} .rail.today{background:var(--amber)}
   .main{flex:1; padding:18px 20px; min-width:0;}
   .chead{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px;}
   .name{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:16px;}
   .email{font-size:12.5px; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
   .badges{display:flex; gap:7px; flex-shrink:0;}
   .badge{font-size:11.5px; font-weight:600; padding:3px 9px; border-radius:999px; white-space:nowrap;}
-  .badge.over{background:#F6E4E1; color:var(--over);}
-  .badge.soon{background:#E7EFEB; color:var(--accent-ink);}
-
+  .badge.over{background:#F6E4E1; color:var(--over);} .badge.soon{background:#E7EFEB; color:var(--accent-ink);}
   .fld{display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:12px 0 5px;}
-  .subject{width:100%; font-family:"IBM Plex Sans",sans-serif; font-size:14px; font-weight:500; padding:9px 11px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:#FCFDFC;}
+  .subject{width:100%; font-size:14px; font-weight:500; padding:9px 11px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:#FCFDFC;}
   .body{width:100%; font-family:"IBM Plex Mono",monospace; font-size:12.5px; line-height:1.55; padding:12px; border:1px solid var(--line); border-radius:8px; color:#2A362F; background:#FCFDFC; resize:vertical; min-height:120px; white-space:pre; overflow-x:auto;}
   .subject:focus,.body:focus{outline:2px solid var(--accent); outline-offset:0; border-color:transparent;}
-
   .cfoot{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px;}
   .status{font-size:12.5px; font-weight:600;}
-  .status.pending{color:var(--muted)}
-  .status.sending{color:var(--amber)}
-  .status.sent{color:var(--accent)}
-  .status.skipped{color:var(--muted); opacity:.7}
-  .status.error{color:var(--over)}
+  .status.pending{color:var(--muted)} .status.sending{color:var(--amber)} .status.sent{color:var(--accent)}
+  .status.skipped{color:var(--muted); opacity:.7} .status.error{color:var(--over)}
   .cactions{display:flex; gap:8px;}
-  .card.done .main{opacity:.6}
-  .card.done .subject,.card.done .body{background:#F4F6F4;}
-
+  .card.done .main{opacity:.6} .card.done .subject,.card.done .body{background:#F4F6F4;}
   .empty{text-align:center; color:var(--muted); padding:60px 20px; font-size:14px;}
   .toast{position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:11px 18px; border-radius:10px; font-size:13px; box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity .2s; z-index:40;}
   .toast.show{opacity:1}
@@ -104,29 +82,30 @@
 </header>
 
 <div class="wrap">
-  <!-- sign-in gate -->
   <div id="gate" class="gate">
-    <h1>Review the morning digests</h1>
-    <p>Sign in with your work account. Every email is sent from you, only after you approve it.</p>
+    <h1>Review the digests</h1>
+    <p>Sign in with your work account. You'll see only your lane, and every email is sent from you, only after you approve it.</p>
     <button id="gateSign" class="btn-primary">Sign in to begin</button>
   </div>
 
-  <!-- workspace -->
   <div id="workspace" class="hidden">
     <div class="controls">
       <div class="count"><b id="pendingN">0</b> to review · <span id="sentN">0</span> sent</div>
       <div class="spacer"></div>
+      <select id="laneSelect" class="hidden">
+        <option value="">All lanes</option>
+        <option value="social">Social</option>
+        <option value="editorial">Everything else</option>
+      </select>
       <label class="switch" title="When on, every email goes to you instead of the real recipient.">
-        <input type="checkbox" id="testToggle" checked>
-        <span class="track"></span>
-        Test mode
+        <input type="checkbox" id="testToggle" checked><span class="track"></span>Test mode
       </label>
       <button id="refreshBtn" class="btn-ghost">Refresh</button>
       <button id="sendAllBtn" class="btn-primary">Approve &amp; send all</button>
     </div>
     <div id="testBanner" class="testbanner">Test mode is on — sends go to <b id="tbMe">you</b>, not the real recipients. Turn it off when you're ready to send for real.</div>
     <div id="list" class="list"></div>
-    <div id="empty" class="empty hidden">Nothing waiting. Run the digest in the sheet, then Refresh.</div>
+    <div id="empty" class="empty hidden">Nothing waiting in your lane. Run the digest in the sheet, then Refresh.</div>
   </div>
 </div>
 
@@ -137,45 +116,62 @@
 /* ---------- CONFIG ---------- */
 const MSAL_CLIENT_ID = "af922ffe-55d9-4907-bd9c-916bb74f52ec";
 const MSAL_TENANT_ID = "ffa5837d-d430-495a-9309-944989937338";
-const REDIRECT_URI   = "https://daviskendrick.github.io/task-digest/";
+const REDIRECT_URI   = "https://daviskendrick.github.io/task-digest/";   // must match the Entra SPA redirect URI + your Pages URL exactly
 const ENDPOINT       = "https://script.google.com/macros/s/AKfycbyI6ZI8CiJ9ZPWQlJxFEeJoRrYI1NIq-uNryTXRIa0SXsuJNYBoyhU9Cn-Nkpb331xy/exec";
-const WEB_SECRET     = "et35er35eb354werthb54wrthgthwhwtd5h4we5th4wt2d5h4wrt5h";   // must match WEB_SECRET in the Apps Script
+const WEB_SECRET     = "et35er35eb354werthb54wrthgthwhwtd5h4we5th4wt2d5h4wrt5h";
+
+/* which lane each sender owns (locks them to it). Others get the lane switcher. */
+const LANE_OWNERS = {
+  "sofia.velazquez@adj.com": "social",
+  "nicole.gonzalez@elationlighting.com": "editorial"
+};
+const LANE_LABELS = { "social": "Social", "editorial": "Everything else" };
 
 /* ---------- state ---------- */
 const $ = s => document.querySelector(s);
 let account = null;
+let currentLane = "";      // "" = all lanes
+let laneLocked = false;    // true for known owners
 const pca = new msal.PublicClientApplication({
   auth:{ clientId:MSAL_CLIENT_ID, authority:"https://login.microsoftonline.com/"+MSAL_TENANT_ID, redirectUri:REDIRECT_URI },
   cache:{ cacheLocation:"localStorage" }
 });
 const testMode = () => $("#testToggle").checked;
-
-function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2600); }
+function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2600); }
 
 /* ---------- auth ---------- */
 async function init(){
   await pca.initialize();
   try{ const r=await pca.handleRedirectPromise(); if(r&&r.account) account=r.account; }catch(e){}
   const accts=pca.getAllAccounts(); if(!account && accts.length) account=accts[0];
-  paintAuth();
+  applyLane(); paintAuth();
   if(account) loadQueue();
+}
+function applyLane(){
+  if(!account){ currentLane=""; laneLocked=false; return; }
+  const owned = LANE_OWNERS[(account.username||"").toLowerCase()];
+  if(owned){ currentLane=owned; laneLocked=true; }
+  else { laneLocked=false; currentLane=$("#laneSelect").value; }
 }
 function paintAuth(){
   if(account){
-    $("#whoami").innerHTML = "Sending as <b>"+(account.name||account.username)+"</b>";
+    let chip="";
+    if(laneLocked){ chip=' <span class="lanechip '+(currentLane==="social"?"social":"")+'">'+LANE_LABELS[currentLane]+'</span>'; }
+    $("#whoami").innerHTML = "Sending as <b>"+(account.name||account.username)+"</b>"+chip;
     $("#signBtn").textContent="Sign out";
     $("#gate").classList.add("hidden"); $("#workspace").classList.remove("hidden");
     $("#tbMe").textContent = account.username;
+    $("#laneSelect").classList.toggle("hidden", laneLocked);   // switcher only for non-owners
   }else{
     $("#whoami").textContent=""; $("#signBtn").textContent="Sign in";
     $("#gate").classList.remove("hidden"); $("#workspace").classList.add("hidden");
   }
 }
 async function signIn(){
-  try{ const r=await pca.loginPopup({scopes:["User.Read","Mail.Send"], prompt:"select_account"}); account=r.account; paintAuth(); loadQueue(); }
+  try{ const r=await pca.loginPopup({scopes:["User.Read","Mail.Send"], prompt:"select_account"}); account=r.account; applyLane(); paintAuth(); loadQueue(); }
   catch(e){ toast("Sign-in failed: "+(e.message||e)); }
 }
-async function signOut(){ try{ await pca.logoutPopup({account}); }catch(e){} account=null; paintAuth(); }
+async function signOut(){ try{ await pca.logoutPopup({account}); }catch(e){} account=null; applyLane(); paintAuth(); }
 async function getToken(){
   const req={scopes:["Mail.Send"], account};
   try{ return (await pca.acquireTokenSilent(req)).accessToken; }
@@ -186,7 +182,8 @@ async function getToken(){
 async function loadQueue(){
   $("#list").innerHTML=""; $("#empty").classList.add("hidden");
   try{
-    const res=await fetch(ENDPOINT+"?secret="+encodeURIComponent(WEB_SECRET));
+    const url = ENDPOINT+"?secret="+encodeURIComponent(WEB_SECRET)+(currentLane?("&lane="+encodeURIComponent(currentLane)):"");
+    const res=await fetch(url);
     const data=await res.json();
     if(!data.ok){ toast("Endpoint said: "+(data.error||"error")); return; }
     render(data.digests||[]);
@@ -222,7 +219,7 @@ function setState(el,state,label){
   el.dataset.state=state;
   const s=el.querySelector(".status"); s.className="status "+state; s.textContent=label;
   if(state==="sent"||state==="skipped") el.classList.add("done");
-  el.querySelectorAll("button").forEach(b=>b.disabled = (state==="sent"||state==="sending"));
+  el.querySelectorAll("button").forEach(b=>b.disabled=(state==="sent"||state==="sending"));
   updateCounts();
 }
 function updateCounts(){
@@ -250,14 +247,9 @@ async function sendCard(el){
   }catch(e){ setState(el,"error","Failed — "+(e.message||e)); }
 }
 function skipCard(el){ markRow(el.dataset.row,"skipped"); setState(el,"skipped","Skipped"); }
-
-/* best-effort writeback (text/plain = no CORS preflight) */
 function markRow(row,status){
-  try{
-    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({secret:WEB_SECRET,row:row,status:status,sentAt:new Date().toISOString()})});
-  }catch(e){}
+  try{ fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({secret:WEB_SECRET,row:row,status:status,sentAt:new Date().toISOString()})}); }catch(e){}
 }
-
 async function sendAll(){
   const pend=[...document.querySelectorAll(".card")].filter(c=>c.dataset.state==="pending");
   if(!pend.length){ toast("Nothing pending."); return; }
@@ -273,6 +265,7 @@ $("#signBtn").addEventListener("click",()=>account?signOut():signIn());
 $("#gateSign").addEventListener("click",signIn);
 $("#refreshBtn").addEventListener("click",loadQueue);
 $("#sendAllBtn").addEventListener("click",sendAll);
+$("#laneSelect").addEventListener("change",()=>{ if(!laneLocked){ currentLane=$("#laneSelect").value; loadQueue(); } });
 $("#testToggle").addEventListener("change",()=>{ $("#testBanner").classList.toggle("hidden", !testMode()); });
 init();
 </script>
