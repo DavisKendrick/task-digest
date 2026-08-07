@@ -149,19 +149,16 @@ async function init(){
 }
 function applyLane(){
   if(!account){ currentLane=""; laneLocked=false; return; }
-  const owned = LANE_OWNERS[(account.username||"").toLowerCase()];
-  if(owned){ currentLane=owned; laneLocked=true; }
-  else { laneLocked=false; currentLane=$("#laneSelect").value; }
+  laneLocked=false;
+  currentLane=$("#laneSelect").value;   // everyone sees all lanes by default and can filter
 }
 function paintAuth(){
   if(account){
-    let chip="";
-    if(laneLocked){ chip=' <span class="lanechip '+(currentLane==="social"?"social":"")+'">'+LANE_LABELS[currentLane]+'</span>'; }
-    $("#whoami").innerHTML = "Sending as <b>"+(account.name||account.username)+"</b>"+chip;
+    $("#whoami").innerHTML = "Sending as <b>"+(account.name||account.username)+"</b>";
     $("#signBtn").textContent="Sign out";
     $("#gate").classList.add("hidden"); $("#workspace").classList.remove("hidden");
     $("#tbMe").textContent = account.username;
-    $("#laneSelect").classList.toggle("hidden", laneLocked);   // switcher only for non-owners
+    $("#laneSelect").classList.remove("hidden");   // everyone gets the lane filter
   }else{
     $("#whoami").textContent=""; $("#signBtn").textContent="Sign in";
     $("#gate").classList.remove("hidden"); $("#workspace").classList.add("hidden");
@@ -265,7 +262,7 @@ $("#signBtn").addEventListener("click",()=>account?signOut():signIn());
 $("#gateSign").addEventListener("click",signIn);
 $("#refreshBtn").addEventListener("click",loadQueue);
 $("#sendAllBtn").addEventListener("click",sendAll);
-$("#laneSelect").addEventListener("change",()=>{ if(!laneLocked){ currentLane=$("#laneSelect").value; loadQueue(); } });
+$("#laneSelect").addEventListener("change",()=>{ currentLane=$("#laneSelect").value; loadQueue(); });
 $("#testToggle").addEventListener("change",()=>{ $("#testBanner").classList.toggle("hidden", !testMode()); });
 init();
 </script>
